@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UploadedDataDbModelStoreContainer" CdmEntityContainer="UploadedDataDbEntities">
+    <EntitySetMapping Name="UploadedDataStatus">
+      <EntityTypeMapping TypeName="UploadedDataDbModel.UploadedDataStatus">
+        <MappingFragment StoreEntitySet="UploadedDataStatus">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="CustomerValue" ColumnName="CustomerValue" />
+          <ScalarProperty Name="File" ColumnName="File" />
+          <ScalarProperty Name="Hash" ColumnName="Hash" />
+          <ScalarProperty Name="UploadStatus" ColumnName="UploadStatus" />
+          <ScalarProperty Name="UploadGuid" ColumnName="UploadGuid" />
+          <ScalarProperty Name="UploadDate" ColumnName="UploadDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

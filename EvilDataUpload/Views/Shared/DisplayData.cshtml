@@ -1,0 +1,71 @@
+﻿@model EvilDataUpload.Models.UserData
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Uploaded Data Lookup</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>@Html.ActionLink("File Upload", "UploadFile", "DataUpload")</td>
+            <td>@Html.ActionLink("Search For Records", "DisplayData", "DataDisplay")</td>
+        </tr>
+    </table>
+    <br><br>
+
+@using (Html.BeginForm("LookupInsertedData", "DataDisplay", FormMethod.Get))
+{
+        <p>
+        Provide hash to lookup data:
+    </p>
+    <table>
+        <tr>
+            <td><input type="text" id="userInputId" name="userInput" required></td>
+            <td><input type="submit" value="Submit"></td>
+        </tr>
+    </table>
+}
+    <br>
+
+@if(Model !=null)
+{
+    if(Model.Hash != null)
+    { 
+        <p><b>Result:</b></p>
+        <table border="1" cellpadding="5" cellspacing="1" style="text-align:left">
+            <tr>
+                <th>Customer Name</th>
+                <th>Customer Value</th>
+                <th>File</th>
+                <th>Hash</th>
+                <th>Action</th>
+                <th>Property</th>
+            </tr>
+            <tr>
+                <td>@Model.CustomerName</td>
+                <td>@Model.CustomerValue</td>
+                <td>@Model.File</td>
+                <td>@Model.Hash</td>
+                <td>@Model.Action</td>
+                <td>@Model.UploaderName</td>
+            </tr>
+        </table>
+    }
+    else
+    {
+        <ul>
+            @if (Model.Errors.Count() > 0)
+            {
+                foreach (var error in Model.Errors)
+                {
+                    <li> @error </li>
+                }
+            }
+        </ul>
+    }
+}
+</body>
+</html>

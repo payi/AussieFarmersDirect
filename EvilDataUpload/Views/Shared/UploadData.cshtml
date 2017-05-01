@@ -1,0 +1,70 @@
+﻿@model IEnumerable<EvilDataUpload.Models.UserData>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>File Upload</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>@Html.ActionLink("File Upload", "UploadFile", "DataUpload")</td>
+            <td>@Html.ActionLink("Search For Records", "DisplayData", "DataDisplay")</td>
+        </tr>
+    </table>
+    <br><br>
+
+    @using (Html.BeginForm("UploadSubmittedFile", "DataUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        
+        <table>
+            <tr>
+                <td>Upload File:</td>
+                <td><input type="file" id="fileInput" name="fileInput" required></td>
+                
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Submit"></td>
+            </tr>
+        </table>
+    }
+    <br>
+   
+    @if (Model != null && Model.Count() > 0)
+    {
+        <table border="1" cellpadding="5" cellspacing="1"  style="text-align:left">
+            <tr>
+                <th>Customer Name</th>
+                <th>Customer Value</th>
+                <th>File</th>
+                <th>Hash</th>
+                <th>Action</th>
+                <th>Property</th>
+                <th>Errors</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CustomerName</td>
+                    <td>@item.CustomerValue</td>
+                    <td>@item.File</td>
+                    <td>@item.Hash</td>
+                    <td>@item.Action</td>
+                    <td>@item.UploaderName</td>
+                    <td>
+                        <ul>
+                            @foreach (var error in item.Errors)
+                            {
+                                <li> @error </li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    
+</body>
+</html>
